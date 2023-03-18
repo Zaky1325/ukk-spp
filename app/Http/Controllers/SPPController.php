@@ -29,6 +29,7 @@ class SPPController extends Controller
      */
     public function store(Request $request)
     {
+        // Spp::find($id);
         $request->validate([
             'tahun' => 'required',
             'nominal' => 'required',
@@ -77,7 +78,7 @@ class SPPController extends Controller
             'nominal' => $request->input('nominal'),
         ]);
         if($update) {
-            return redirect()->route('admin.spp.index');
+            return to_route('spp.index');
         }
     }
 

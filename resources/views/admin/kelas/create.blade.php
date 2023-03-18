@@ -9,11 +9,11 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-header pb-0">
+                <div class="card-header pb-5">
                     <h1>Data Kelas</h1>
 
                     <div class="card-body px-0 pt-0 pb-2">
-                        <div class="table-responsive p-0">
+                        <div class="table-responsive pb-12">
                             <form method="post" action="{{ route('kelas.store')}}">
                                 @csrf
                                 <table class="table align-items-center mb-0">

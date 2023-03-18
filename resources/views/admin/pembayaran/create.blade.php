@@ -9,11 +9,11 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-header pb-0">
+                <div class="card-header pb-5">
                     <h1>Pembayaran</h1>
 
                     <div class="card-body px-0 pt-0 pb-2">
-                        <div class="table-responsive p-0">
+                        <div class="table-responsive pb-12">
                             <form method="post" action="{{ route('pembayaran.store')}}">
                                 @csrf
                                 <table class="table align-items-center mb-0">
@@ -21,7 +21,7 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Nama Petugas</label>
-                                            <input class="form-control" type="string" name="id_petugas" value="{{ Auth::user()->name }}" id="example-text-input">
+                                            <input class="form-control" readonly type="string" name="id_petugas" value="{{ Auth::user()->name }}" id="example-text-input">
                                         </div>
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">NISN</label>
@@ -44,7 +44,7 @@
                                             <input class="form-control" type="string" name="tahun_dibayar" id="example-text-input">
                                         </div>
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">ID SPP</label>
+                                            <label for="example-text-input" class="form-control-label">Nominal SPP</label>
                                             <select class="form-control" type="integer" name="id_spp" id="example-text-input">
                                                 @foreach ($spp as $data)
                                                 <option value="{{$data->id_spp}}">{{$data->nominal}}</option>

@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -29,7 +29,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $user = User::find($id);
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
+
+        User::create($request->all());
+
+        return to_route('user.index');
     }
 
     /**
@@ -45,7 +56,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
+        // $user = User::find($id);
         return view('admin.user.edit', compact('user'));
     }
 
@@ -80,6 +91,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('admin.user.index');
+        return to_route('admin.user.index');
     }
 }

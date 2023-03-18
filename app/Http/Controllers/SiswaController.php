@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Spp;
+use App\Models\User;
 
 class SiswaController extends Controller
 {
@@ -25,7 +26,8 @@ class SiswaController extends Controller
     {
         $kelas = Kelas::all();
         $spp = Spp::all();
-        return view('admin.siswa.create', compact('kelas', 'spp',));
+        $user = User::all();
+        return view('admin.siswa.create', compact('kelas', 'spp', 'user',));
     }
 
     /**

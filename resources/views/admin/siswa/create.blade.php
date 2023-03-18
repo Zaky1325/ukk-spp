@@ -9,11 +9,11 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-header pb-0">
+                <div class="card-header pb-5">
                     <h1>Data Siswa</h1>
 
                     <div class="card-body px-0 pt-0 pb-2">
-                        <div class="table-responsive p-0">
+                        <div class="table-responsive pb-12">
                             <form method="post" action="{{ route('siswa.store')}}">
                                 @csrf
                                 <table class="table align-items-center mb-0">
@@ -29,7 +29,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Nama</label>
-                                            <input class="form-control" type="text" name="nama" id="example-text-input">
+                                            <select class="form-control" type="string"  name="nama" id="example-text-input">
+                                                @foreach ($user as $data)
+                                                <option value="{{$data->name}}">{{$data->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Nama Kelas</label>
