@@ -24,9 +24,9 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        $kelas = Kelas::all();
         $spp = Spp::all();
         $user = User::all();
+        $kelas = Kelas::all();
         return view('admin.siswa.create', compact('kelas', 'spp', 'user',));
     }
 

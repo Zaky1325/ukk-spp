@@ -29,7 +29,7 @@
                                             <div class="form-group">
                                                 <label for="example-text-input" class="form-control-label">Nama Kelas</label>
                                                 <select class="form-control" type="string"  name="id_kelas" id="example-text-input">
-                                                    @foreach ($siswa as $data)
+                                                    @foreach ($kelas as $data)
                                                     <option value="{{$data->nama_kelas}}">{{$data->nama_kelas}}</option>
                                                     @endforeach
                                                 </select>

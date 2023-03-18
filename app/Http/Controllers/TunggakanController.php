@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Spp;
 use App\Models\Siswa;
+use App\Models\User;
+use App\Models\Kelas;
 use App\Models\Tunggakan;
 use Illuminate\Http\Request;
 
@@ -31,8 +33,10 @@ class TunggakanController extends Controller
     {
         // $tunggakan = Tunggakan::all();
         $siswa = Siswa::all();
-
-        return view('tunggakan.create', compact('siswa'));
+        $user = User::all();
+        $kelas = Kelas::all();
+        $spp = Spp::all();
+        return view('admin.tunggakan.create', compact('siswa','user','kelas','spp'));
     }
 
     /**
@@ -44,9 +48,10 @@ class TunggakanController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'siswa_id' => ['required', 'string'],
-            'bulan' => ['required', 'string'],
-            'total_tunggakan' => ['string'],
+            'nama' => ['required', 'string'],
+            'nama_kelas' => ['required', 'string'],
+            'bulan' => ['string'],
+            'nominal' => ['string'],
         ]);
         $validatedData['sisa_bulan'] = $request->bulan;
         $validatedData['sisa_tunggakan'] = $request->total_tunggakan;
