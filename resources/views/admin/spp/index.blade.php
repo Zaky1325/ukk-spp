@@ -32,8 +32,8 @@
                                         <td>{{$item->tahun}}</td>
                                         <td>{{$item->nominal}}</td>
                                         <td>
-                                            <a href="{{ route('spp.edit',  $item->id_spp) }}" class="btn btn-sm text-white bg-warning" data-id="{{ $item->id_spp }}"><i class='fa fa-edit'> Edit</i></a>
-                                            <a href="{{ route('spp.destroy', $item->id_spp) }}" data-toggle="modal" data-target="#exampleModal{{$item->id_spp}}" class="btn btn-sm text-white bg-danger"><i class='fa fa-trash'> Delete</i></i></a>
+                                            <a href="{{ route('spp.edit',  $item->id) }}" class="btn btn-sm text-white bg-warning" data-id="{{ $item->id }}"><i class='fa fa-edit'> Edit</i></a>
+                                            <a href="{{ route('spp.destroy', $item->id) }}" data-toggle="modal" data-target="#exampleModal{{$item->id}}" class="btn btn-sm text-white bg-danger"><i class='fa fa-trash'> Delete</i></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

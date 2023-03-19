@@ -12,16 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pembayarans', function (Blueprint $table) {
-            $table->id('id_pembayaran');
+            $table->id();
+            $table->foreignId('siswa_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('tunggakan_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('id_petugas');
-            $table->string('nisn');
-            $table->date('tgl_bayar');
+            // $table->string('nisn');
+            $table->string('tgl_bayar');
             $table->string('bulan_dibayar');
-            $table->string('tahun_dibayar');
+            // $table->string('tahun_dibayar');
             $table->integer('id_spp');
+            $table->string('bulan');
+            $table->integer('total');
             $table->integer('jumlah_bayar');
             $table->timestamps();
         });
+
     }
 
     /**

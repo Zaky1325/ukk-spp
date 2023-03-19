@@ -14,8 +14,18 @@
 
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive pb-12">
-                            <form method="post" action="{{ route('pembayaran.store')}}">
+                            <form enctype="multipart/form-data" method="post" action="{{ route('pembayaran.store')}}">
                                 @csrf
+                                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                     <form>
@@ -25,35 +35,57 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">NISN</label>
-                                            <select class="form-control" type="string"  name="nisn" id="example-text-input">
+                                            <select class="form-control" type="string"  name="siswa_id" id="example-text-input">
                                                 @foreach ($siswa as $data)
-                                                <option value="{{$data->nisn}}">{{$data->nisn}}</option>
+                                                <option value="{{$data->id}}">{{$data->nisn}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Nama</label>
+                                            <select class="form-control" type="string"  name="tunggakan" id="example-text-input">
+                                                @foreach ($tunggakan as $data)
+                                                <option {{ $data->id == old('tunggakan') ? 'selected' : '' }} value="{{$data->id}}">{{$data->siswa->nama}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        {{-- <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Tanggal Bayar</label>
                                             <input class="form-control" type="date" name="tgl_bayar" id="example-text-input">
+                                        </div> --}}
+                                        <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Nominal SPP</label>
+                                            <select class="form-control" type="number" name="id_spp" id="example-text-input">
+                                                @foreach ($spp as $data)
+                                                <option value="{{$data->nominal}}">{{$data->nominal}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Bulan</label>
+                                            <input class="form-control" type="text" name="bulan" id="example-text-input">
+                                            {{-- <select class="form-control" type="text" name="bulan" id="example-text-input">
+                                                <option>Januari</option>
+                                                <option>Februari</option>
+                                                <option>Maret</option>
+                                                <option>April</option>
+                                                <option>Mei</option>
+                                                <option>Juni</option>
+                                                <option>Juli</option>
+                                                <option>Agustus</option>
+                                                <option>September</option>
+                                                <option>Oktober</option>
+                                                <option>November</option>
+                                                <option>Desember</option>
+                                            </select> --}}
                                         </div>
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Bulan Dibayar</label>
                                             <input class="form-control" type="string" name="bulan_dibayar" id="example-text-input">
                                         </div>
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Tahun Dibayar</label>
-                                            <input class="form-control" type="string" name="tahun_dibayar" id="example-text-input">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Nominal SPP</label>
-                                            <select class="form-control" type="integer" name="id_spp" id="example-text-input">
-                                                @foreach ($spp as $data)
-                                                <option value="{{$data->id_spp}}">{{$data->nominal}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Jumlah Bayar</label>
-                                            <input class="form-control" type="integer" name="jumlah_bayar" id="example-text-input">
+                                            <input class="form-control" type="number" name="jumlah_bayar" id="example-text-input">
                                         </div>
                                     </form>
                                     </thead>

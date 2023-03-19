@@ -32,8 +32,8 @@
                                         <td>{{$item->nama_kelas}}</td>
                                         <td>{{$item->kompetensi_keahlian}}</td>
                                         <td>
-                                            <a href="{{ route('kelas.edit',  $item->id_kelas) }}" class="btn btn-sm text-white bg-warning" data-id="{{ $item->id_kelas }}"><i class='fa fa-edit'> Edit</i></a>
-                                            <a href="{{ route('kelas.destroy', $item->id_kelas) }}" data-toggle="modal" data-target="#exampleModal{{$item->id_kelas}}" class="btn btn-sm text-white bg-danger"><i class='fa fa-trash'> Delete</i></i></a>
+                                            <a href="{{ route('kelas.edit',  $item->id) }}" class="btn btn-sm text-white bg-warning" data-id="{{ $item->id }}"><i class='fa fa-edit'> Edit</i></a>
+                                            <a href="{{ route('kelas.destroy', $item->id) }}" data-toggle="modal" data-target="#exampleModal{{$item->id}}" class="btn btn-sm text-white bg-danger"><i class='fa fa-trash'> Delete</i></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

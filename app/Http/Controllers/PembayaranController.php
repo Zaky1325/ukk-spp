@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Pembayaran;
-use App\Models\Siswa;
-use App\Models\User;
 use App\Models\Spp;
+use App\Models\User;
+use App\Models\Siswa;
+use App\Models\Tunggakan;
+use App\Models\Pembayaran;
+use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
 {
@@ -27,7 +28,8 @@ class PembayaranController extends Controller
         $siswa = Siswa::all();
         $user = User::all();
         $spp = Spp::all();
-        return view('admin.pembayaran.create', compact('siswa', 'user', 'spp'));
+        $tunggakan = Tunggakan::all();
+        return view('admin.pembayaran.create', compact('siswa', 'user', 'spp','tunggakan'));
     }
 
     /**
@@ -35,19 +37,43 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'id_petugas' => 'required',
-        //     'nisn' => 'required',
-        //     'tgl_bayar' => 'required',
-        //     'bulan_dibayar' => 'required',
-        //     'tahun_dibayar' => 'required',
-        //     'id_spp' => 'required',
-        //     'jumlah_bayar' => 'required',
-        // ]);
+        $rules = [
+            'id_petugas' => ['required'],
+            'siswa_id' => ['required'],
+            'tunggakan' => ['required'],
+            'bulan' => ['required'],
+            'id_spp' => ['required'],
+            'bulan_dibayar' => ['required', 'numeric'],
+            'jumlah_bayar' => ['required']
+        ];
+        // dd($rules);
 
-        Pembayaran::create($request->all());
+        if ($request->tunggakan) {
+            $tunggakan = Tunggakan::find($request->tunggakan);
+            array_push($rules['bulan_dibayar'], 'max:' . $tunggakan->sisa_bulan);
+            array_push($rules['jumlah_bayar'], 'max:' . $tunggakan->sisa_tunggakan);
+            // dd($tunggakan);
+        }
+        
 
-            return to_route('pembayaran.index');
+        $validatedData = $request->validate($rules);
+
+        if ($request->tunggakan) {
+            $tunggakan = Tunggakan::find($request->tunggakan);
+            $tunggakan->sisa_bulan -= $request->bulan_dibayar;
+            $tunggakan->sisa_tunggakan -= $request->jumlah_bayar;
+            $tunggakan->save();
+
+            $validatedData['total'] = $tunggakan->sisa_tunggakan;
+            $validatedData['tunggakan_id'] = $request->tunggakan;
+            $validatedData['tgl_bayar'] = date('j F Y');
+            unset($validatedData['tunggakan']);
+
+            Pembayaran::create($validatedData);
+            return to_route('pembayaran.index')->with('success', 'Berhasil Menambahakan Data Entri Pembayaran');
+        }
+
+        
     }
 
     /**
@@ -79,7 +105,7 @@ class PembayaranController extends Controller
      */
     public function destroy(string $id)
     {
-        $pemabayaran = Pembayaran::findOrFail($id);
+        $pembayaran = Pembayaran::findOrFail($id);
         $pembayaran->delete();
         return redirect()->route('pembayaran.index');
     }

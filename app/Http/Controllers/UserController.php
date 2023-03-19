@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -31,12 +32,16 @@ class UserController extends Controller
     {
         // $user = User::find($id);
 
-        $request->validate([
+        $validateData = $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => [
+                'required'
+                // Password::min(8)->letters()->numbers()->mixedCase()->symbols()
+            ],
             'role' => 'required',
         ]);
+        $validateData['password'] = bcrypt($validateData['password']);
 
         User::create($request->all());
 
@@ -89,7 +94,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
         $user->delete();
         return to_route('admin.user.index');
     }

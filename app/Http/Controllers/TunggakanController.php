@@ -48,10 +48,10 @@ class TunggakanController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama' => ['required', 'string'],
-            'nama_kelas' => ['required', 'string'],
-            'bulan' => ['string'],
-            'nominal' => ['string'],
+            'siswa_id' => ['required', 'string'],
+            'bulan' => ['required', 'string'],
+            'id_spp' => ['required', 'string'],
+            'total_tunggakan' => ['required', 'string'],
         ]);
         $validatedData['sisa_bulan'] = $request->bulan;
         $validatedData['sisa_tunggakan'] = $request->total_tunggakan;
@@ -95,7 +95,8 @@ class TunggakanController extends Controller
     {
         $validatedData = $request->validate([
             'id_siswa' => ['required', 'string'],
-            'bulan' => ['required', 'string'],
+            'bulan' => ['required', 'string'],      
+            'id_spp' => ['required', 'string'],
             'total_tunggakan' => ['required', 'string'],
         ]);
         $validatedData['sisa_bulan'] = $request->bulan;

@@ -21,35 +21,18 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Nama</label>
-                                            <select class="form-control" type="string"  name="nama" id="example-text-input">
-                                                @foreach ($user as $data)
-                                                <option value="{{$data->name}}">{{$data->name}}</option>
+                                            <select class="form-control" type="string"  name="siswa_id" id="example-text-input">
+                                                @foreach ($siswa as $data)
+                                                <option value="{{$data->id}}">{{$data->nama}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Nama Kelas</label>
-                                            <select class="form-control" type="string"  name="id_kelas" id="example-text-input">
-                                                @foreach ($kelas as $data)
-                                                <option value="{{$data->nama_kelas}}">{{$data->nama_kelas}}</option>
+                                            <label for="example-text-input" class="form-control-label">NISN</label>
+                                            <select class="form-control" type="string"  name="siswa_id" id="example-text-input">
+                                                @foreach ($siswa as $data)
+                                                <option value="{{$data->id}}">{{$data->nisn}}</option>
                                                 @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Bulan Dibayar</label>
-                                            <select class="form-control" type="integer" name="id_spp" id="example-text-input">
-                                                <option>Januari</option>
-                                                <option>Februari</option>
-                                                <option>Maret</option>
-                                                <option>April</option>
-                                                <option>Mei</option>
-                                                <option>Juni</option>
-                                                <option>Juli</option>
-                                                <option>Agustus</option>
-                                                <option>September</option>
-                                                <option>Oktober</option>
-                                                <option>November</option>
-                                                <option>Desember</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -59,6 +42,14 @@
                                                 <option value="{{$data->nominal}}">{{$data->nominal}}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Bulan Tunggakan</label>
+                                            <input class="form-control" type="text" name="bulan" id="example-text-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Total Tunggakan</label>
+                                            <input class="form-control" type="text" name="total_tunggakan" id="example-text-input">
                                         </div>
                                     </form>
                                     </thead>

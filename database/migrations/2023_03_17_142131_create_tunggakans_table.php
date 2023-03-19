@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('siswa_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('bulan');
+            $table->integer('id_spp');
             $table->string('total_tunggakan');
             $table->string('sisa_tunggakan');
             $table->string('sisa_bulan');

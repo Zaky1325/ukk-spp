@@ -16,35 +16,22 @@
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Kelas</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bulan</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NISN</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nominal</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-7">Action</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bulan Tunggakan</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Tunggakan</th>
+                    {{-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-7">Action</th> --}}
                   </tr>
                 </thead>
                 <tbody>
                     @foreach ($tunggakan as $item)
                    <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div>
-                          <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">{{ $item->nama }}</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                        <p class="text-xs font-weight-bold mb-0">{{ $item->nama_kelas }}</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                        <p class="text-xs font-weight-bold mb-0">{{ $item->bulan }}</p>
-                    </td>
-                    <td class="align-middle text-center">
-                        <p class="text-xs font-weight-bold mb-0">{{ $item->nominal }}</p>
-                    
+                    <td>{{ $item->siswa->nama}}</td>
+                    <td>{{ $item->siswa->nisn}}</td>
+                    <td>{{ $item->id_spp }}</td>
+                    <td>{{ $item->sisa_bulan}}</td>
+                    <td>{{ $item->sisa_tunggakan }}</td>
                   </tr>
                   @endforeach
                 </tbody>
