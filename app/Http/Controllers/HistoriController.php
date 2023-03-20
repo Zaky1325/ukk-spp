@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Pembayaran;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use PDF;
 
 class HistoriController extends Controller
 {
@@ -20,10 +22,19 @@ class HistoriController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function cetakpdf()
+    public function cetak_pdf()
     {
         $pembayaran = Pembayaran::all();
-        return view('histori.pdf', compact('pembayaran'));
+        $pdf = PDF::loadView('histori.cetak_pdf', [
+            'pembayaran' => $pembayaran
+        ]);
+        return $pdf->download('Laporan-Pembayaran.pdf');
+
+        $pdf = App::make('histori.cetak_pdf');
+        $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream();
+        // $pembayaran = Pembayaran::all();
+        return view('histori.cetak_pdf', compact('pembayaran'));
     }
 
     /**

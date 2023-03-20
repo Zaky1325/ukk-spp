@@ -61,17 +61,18 @@ Route::resource('/admin/user', UserController::class);
 Route::resource('/admin/tunggakan', TunggakanController::class);
 
 //pdf
-Route::get('/generateLaporan', function () {
-    $data = Pembayaran::all();
-    $laporan = new Dompdf();
-    $html = view('histori.pdf', compact('data'))->render();
-    $laporan->loadHtml($html);
-    $laporan->render();
-    return $laporan->stream('Laporan Pembayaran.pdf');
-});
+// Route::get('/generateLaporan', function () {
+//     $data = Pembayaran::all();
+//     $laporan = new Dompdf();
+//     $html = view('histori.pdf', compact('data'))->render();
+//     $laporan->loadHtml($html);
+//     $laporan->render();
+//     return $laporan->stream('Laporan Pembayaran.pdf');
+// });
 
+Route::get('/cetak_pdf', [HistoriController::class, 'cetak_pdf'])->name('histori.cetak_pdf');
 //histori
 Route::get('/histori/index', [HistoriController::class, 'index'])->name('index');
 Route::get('/histori/pdf', [HistoriController::class, 'cetakpdf'])->name('pdf');
 
-//->parameter('kelas', 'kelas');
+
