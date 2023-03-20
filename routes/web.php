@@ -37,8 +37,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/admin/pembayaran', PembayaranController::class);
 
 //spp
-Route::resource('/admin/spp', SPPController::class);
-
+Route::resource('/admin/spp', SPPController::class)->parameter('spp', 'spp');;
 
 //kelas
 Route::resource('/admin/kelas', KelasController::class)->parameter('kelas', 'kelas');
@@ -48,6 +47,15 @@ Route::resource('/admin/siswa', SiswaController::class);
 
 //user
 Route::resource('/admin/user', UserController::class);
+
+// //kelas
+// Route::resource('/admin/kelas', KelasController::class)
+
+// //siswa
+// Route::resource('/admin/siswa', SiswaController::class);
+
+// //user
+// Route::resource('/admin/user', UserController::class);
 
 //tunggakan
 Route::resource('/admin/tunggakan', TunggakanController::class);
@@ -64,6 +72,6 @@ Route::get('/generateLaporan', function () {
 
 //histori
 Route::get('/histori/index', [HistoriController::class, 'index'])->name('index');
-Route::get('/histori/pdf', [HistoriController::class, 'cetakPDF'])->name('pdf');
+Route::get('/histori/pdf', [HistoriController::class, 'cetakpdf'])->name('pdf');
 
-
+//->parameter('kelas', 'kelas');

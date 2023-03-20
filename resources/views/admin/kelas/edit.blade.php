@@ -9,9 +9,19 @@
                     <h6>Edit Data Kelas</h6>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive pb-12">
-                            <form action="{{ route('kelas.update', $kelas->id_kelas) }}" method="POST">
+                            <form action="{{ route('kelas.update', $kelas->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
+                                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <form>
@@ -36,7 +46,7 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 
     @endsection

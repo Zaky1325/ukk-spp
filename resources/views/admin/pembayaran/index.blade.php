@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
- 
+
 
 <div class="container-fluid py-4">
     <div class="row">
@@ -11,7 +11,7 @@
                     <a href="{{ route('pembayaran.create') }}" class="btn btn-sm text-white bg-success"><i class='fa fa-edit'> Create</i></a>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive pb-12">
-             
+
                             <form action="{{ route('pembayaran.store') }}" method="post">
                             @csrf
                                 <table class="table align-items-center mb-0">
@@ -19,10 +19,10 @@
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">No</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Petugas</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NISN</th>
+                                        {{-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NISN</th> --}}
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Bayar</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nominal SPP</th>
+                                        {{-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nominal SPP</th> --}}
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bulan Dibayar</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Bayar</th>
                                     </tr>
@@ -30,14 +30,15 @@
                                 <tbody>
 
                                 @foreach($pembayaran as $item)
-                        
+
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{$item->id_petugas}}</td>
-                                        <td>{{$item->siswa->nisn}}</td>
-                                        <td>{{$item->siswa->nama}}</td>
+                                        {{-- <td>{{$item->siswa->nisn}}</td> --}}
+                                        <td>{{ $item->tunggakan->siswa->nama }}</td>
+                                        {{-- <td>{{$item->tunggakan_id}}</td> --}}
                                         <td>{{$item->tgl_bayar}}</td>
-                                        <td>{{$item->id_spp}}</td>
+                                        {{-- <td>{{$item->id_spp}}</td> --}}
                                         <td>{{$item->bulan_dibayar}}</td>
                                         <td>{{$item->jumlah_bayar}}</td>
                                     </tr>
@@ -48,6 +49,6 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
 
     @endsection

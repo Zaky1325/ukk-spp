@@ -27,14 +27,14 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">NISN</label>
                                             <select class="form-control" type="string"  name="siswa_id" id="example-text-input">
                                                 @foreach ($siswa as $data)
                                                 <option value="{{$data->id}}">{{$data->nisn}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Nominal SPP</label>
                                             <select class="form-control" type="integer" name="id_spp" id="example-text-input">
@@ -64,6 +64,6 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
 
     @endsection

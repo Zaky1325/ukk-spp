@@ -29,7 +29,7 @@ class PembayaranController extends Controller
         $user = User::all();
         $spp = Spp::all();
         $tunggakan = Tunggakan::all();
-        return view('admin.pembayaran.create', compact('siswa', 'user', 'spp','tunggakan'));
+        return view('admin.pembayaran.create', compact('siswa', 'user','spp','tunggakan'));
     }
 
     /**
@@ -39,12 +39,12 @@ class PembayaranController extends Controller
     {
         $rules = [
             'id_petugas' => ['required'],
-            'siswa_id' => ['required'],
+            // 'siswa_id' => ['required'],
             'tunggakan' => ['required'],
-            'bulan' => ['required'],
-            'id_spp' => ['required'],
+            // 'bulan' => ['required'],
+            'id_spp' => ['null'],
             'bulan_dibayar' => ['required', 'numeric'],
-            'jumlah_bayar' => ['required']
+            'jumlah_bayar' => ['required', 'numeric']
         ];
         // dd($rules);
 
@@ -54,7 +54,7 @@ class PembayaranController extends Controller
             array_push($rules['jumlah_bayar'], 'max:' . $tunggakan->sisa_tunggakan);
             // dd($tunggakan);
         }
-        
+
 
         $validatedData = $request->validate($rules);
 
@@ -73,7 +73,7 @@ class PembayaranController extends Controller
             return to_route('pembayaran.index')->with('success', 'Berhasil Menambahakan Data Entri Pembayaran');
         }
 
-        
+
     }
 
     /**

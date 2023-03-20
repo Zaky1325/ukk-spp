@@ -26,6 +26,7 @@
                     </ul>
                 </div>
             @endif
+            
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                     <form>
@@ -33,16 +34,21 @@
                                             <label for="example-text-input" class="form-control-label">Nama Petugas</label>
                                             <input class="form-control" readonly type="string" name="id_petugas" value="{{ Auth::user()->name }}" id="example-text-input">
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">NISN</label>
                                             <select class="form-control" type="string"  name="siswa_id" id="example-text-input">
                                                 @foreach ($siswa as $data)
                                                 <option value="{{$data->id}}">{{$data->nisn}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Nama</label>
+                                            {{-- <select class="form-control" type="string"  name="siswa_id" id="example-text-input">
+                                                @foreach ($siswa as $data)
+                                                <option value="{{$data->id}}">{{$data->nama}}</option>
+                                                @endforeach
+                                            </select> --}}
                                             <select class="form-control" type="string"  name="tunggakan" id="example-text-input">
                                                 @foreach ($tunggakan as $data)
                                                 <option {{ $data->id == old('tunggakan') ? 'selected' : '' }} value="{{$data->id}}">{{$data->siswa->nama}}</option>
@@ -53,15 +59,15 @@
                                             <label for="example-text-input" class="form-control-label">Tanggal Bayar</label>
                                             <input class="form-control" type="date" name="tgl_bayar" id="example-text-input">
                                         </div> --}}
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Nominal SPP</label>
+                                        {{-- <div class="form-group">
+                                            <label for="example-text-input" readonly class="form-control-label">Nominal SPP</label>
                                             <select class="form-control" type="number" name="id_spp" id="example-text-input">
                                                 @foreach ($spp as $data)
                                                 <option value="{{$data->nominal}}">{{$data->nominal}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> --}}
+                                        {{-- <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Bulan</label>
                                             <input class="form-control" type="text" name="bulan" id="example-text-input">
                                             {{-- <select class="form-control" type="text" name="bulan" id="example-text-input">
@@ -78,7 +84,7 @@
                                                 <option>November</option>
                                                 <option>Desember</option>
                                             </select> --}}
-                                        </div>
+                                        {{-- </div> --}}
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Bulan Dibayar</label>
                                             <input class="form-control" type="string" name="bulan_dibayar" id="example-text-input">
@@ -100,6 +106,6 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
 
     @endsection

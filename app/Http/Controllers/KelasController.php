@@ -66,20 +66,18 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $kelas = Kelas::find($id);
+        $kelas = Kelas::find($id);
 
         $request->validate([
             'nama_kelas'=>'required',
             'kompetensi_keahlian'=>'required',
         ]);
-
-        Kelas::create($request->all());
-        // $update = $kelas->update([
-        //     'nama_kelas' => $request->input('nama_kelas'),
-        //     'kompetensi_keahlian' => $request->input('kompetensi_keahlian'),
-        // ]);
+        $update = $kelas->update([
+            'nama_kelas' => $request->input('nama_kelas'),
+            'kompetensi_keahlian' => $request->input('kompetensi_keahlian'),
+        ]);
         if($update) {
-            return redirect()->route('kelas.index');
+            return to_route('kelas.index');
         }
     }
 

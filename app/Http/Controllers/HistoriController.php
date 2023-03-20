@@ -20,7 +20,7 @@ class HistoriController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function cetakPDF()
+    public function cetakpdf()
     {
         $pembayaran = Pembayaran::all();
         return view('histori.pdf', compact('pembayaran'));
